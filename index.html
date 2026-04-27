@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Коллаборация — Платформа для команд</title>
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">✨ Коллаборация</a>
+      <div class="nav-auth">
+        <button id="loginBtn" class="btn">Войти</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div> <!-- Новая картинка -->
+    <div class="hero-content">
+      <h1 class="hero-title">Коллаборация</h1>
+      <p class="hero-subtitle">Находите единомышленников, собирайте команды для хакатонов и создавайте проекты, которые меняют мир</p>
+      <div class="hero-cta">
+        <a href="#calendar" class="btn">📅 Смотреть мероприятия</a>
+        <button id="heroLoginBtn" class="btn btn-outline">🚀 Начать сейчас</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="info-section">
+    <div class="container">
+      <h2 class="section-title">Зачем мы здесь?</h2>
+      <p class="section-subtitle">Мы создали платформу, чтобы решать главные проблемы разработчиков</p>
+      <div class="features-grid">
+        <div class="feature-card"><div class="feature-icon">🎯</div><h3>Точный мэтчинг</h3><p>Находите людей с нужными навыками и целями благодаря умной системе подбора.</p></div>
+        <div class="feature-card"><div class="feature-icon">📅</div><h3>Актуальные события</h3><p>Все хакатоны, митапы и воркшопы в одном календаре с удобными фильтрами.</p></div>
+        <div class="feature-card"><div class="feature-icon">💬</div><h3>Фокус на деле</h3><p>Чаты привязаны к мероприятиям — никакого флуда, только продуктивное общение.</p></div>
+        <div class="feature-card"><div class="feature-icon">🔐</div><h3>Безопасность</h3><p>Авторизация через Google и проверка профилей создают доверительную среду.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendar" class="calendar-section">
+    <div class="container">
+      <div class="calendar-header">
+        <h2 class="calendar-title">🗓️ Ближайшие мероприятия</h2>
+        <div class="filters">
+          <select id="topicFilter"><option value="all">Все темы</option><option value="frontend">Frontend</option><option value="backend">Backend</option><option value="ai">AI/ML</option><option value="design">Дизайн</option></select>
+          <select id="formatFilter"><option value="all">Любой формат</option><option value="online">Онлайн</option><option value="offline">Офлайн</option><option value="hybrid">Гибрид</option></select>
+          <input type="date" id="dateFilter">
+        </div>
+      </div>
+      
+      <!-- Карточки генерируются JS -->
+      <div id="eventsList" class="events-list"></div>
+    </div>
+  </section>
+
+  <!-- НОВЫЙ ПРОМО-БЛОК -->
+  <section class="promo-section">
+    <div class="container">
+      <h2 class="section-title">🔥 Найдите команду за 30 секунд</h2>
+      <p class="section-subtitle">Просто свайпайте анкеты участников. Вправо — если хотите работать вместе, влево — если нет.</p>
+      
+      <div class="promo-card-container">
+        <div class="promo-demo-card">
+          <div class="promo-demo-avatar"></div>
+          <h3 style="margin-bottom:4px;">Алексей, 24</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted);">Ищу фронтендера для хакатона</p>
+          <div class="promo-demo-skills">
+            <span class="promo-demo-tag">React</span>
+            <span class="promo-demo-tag">Node.js</span>
+            <span class="promo-demo-tag">Git</span>
+          </div>
+          <div style="margin-top:16px; display:flex; justify-content:space-between; font-size:24px;">
+            <span style="opacity:0.3;">👈</span>
+            <span style="color:var(--purple);">❤</span>
+          </div>
+        </div>
+      </div>
+
+      <button id="promoLoginBtn" class="btn">🚀 Зарегистрироваться и начать свайпы</button>
+    </div>
+  </section>
+
+  <!-- Скрипты -->
+  <script src="js/calendar.js"></script>
+  <script>
+    // --- ГЛОБАЛЬНАЯ АВТОРИЗАЦИЯ ---
+    let isAuthenticated = false;
+
+    function toggleAuth() {
+      isAuthenticated = !isAuthenticated;
+      updateInterface();
+      if (isAuthenticated) {
+        alert('✅ Вы успешно вошли!');
+      }
+    }
+
+    function updateInterface() {
+      const loginBtns = document.querySelectorAll('#loginBtn, #heroLoginBtn, #promoLoginBtn');
+      loginBtns.forEach(btn => {
+        btn.textContent = isAuthenticated ? '👤 Выйти' : (btn.id === 'promoLoginBtn' ? '🚀 Зарегистрироваться и начать свайпы' : 'Войти');
+        btn.onclick = toggleAuth;
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', updateInterface);
+  </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Коллаборация — Детали мероприятия</title>
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">✨ Коллаборация</a>
+      <div class="nav-auth">
+        <button id="loginBtn" class="btn">Войти</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container event-detail-page" style="padding-top: 40px;">
+    <a href="index.html" class="back-link">← Назад к календарю</a>
+    
+    <div id="event-content" class="event-full-card">
+      <!-- Контент загрузится через JS -->
+    </div>
+
+    <!-- Блок чата (заблокирован до входа) -->
+    <div class="chat-gate-box">
+      <h3>💬 Командный чат</h3>
+      <p>Обсудите детали и распределите роли с другими участниками</p>
+      <div id="chatPreview" class="chat-preview-blur">
+        <p>🔒 Чат доступен после входа</p>
+      </div>
+      <button id="loginToChat" class="btn" style="margin-top: 16px;">Войти, чтобы написать</button>
+    </div>
+  </main>
+
+  <script src="js/event.js"></script>
+  <script>
+    // --- ГЛОБАЛЬНАЯ АВТОРИЗАЦИЯ (копия логики для этой страницы) ---
+    let isAuthenticated = false;
+
+    function toggleAuth() {
+      isAuthenticated = !isAuthenticated;
+      updateInterface();
+      if (isAuthenticated) {
+        const btn = document.getElementById('loginBtn');
+        btn.textContent = '👤 Выйти';
+        alert('✅ Вы успешно вошли!');
+        checkChatAccess();
+      } else {
+        const btn = document.getElementById('loginBtn');
+        btn.textContent = 'Войти';
+        checkChatAccess();
+      }
+    }
+
+    function checkChatAccess() {
+      const chatBtn = document.getElementById('loginToChat');
+      const chatBlur = document.getElementById('chatPreview');
+      
+      if (isAuthenticated) {
+        if(chatBtn) chatBtn.style.display = 'none';
+        if(chatBlur) {
+          chatBlur.innerHTML = '<p style="color:var(--text-muted)">Сообщений пока нет. Будьте первым!</p>';
+          chatBlur.style.filter = 'none';
+        }
+      }
+    }
+
+    function updateInterface() {
+      const btn = document.getElementById('loginBtn');
+      btn.textContent = isAuthenticated ? '👤 Выйти' : 'Войти';
+      btn.onclick = toggleAuth;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateInterface);
+  </script>
+</body>
+</html>
