@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чат — Коллаборация</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="swipe.html" class="nav-logo">← Назад к поиску</a>
+      <div class="nav-auth">
+        <span style="font-weight:600; color:var(--primary)">Вы: Алексей</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="chat-container container">
+    <!-- Список диалогов (слева) -->
+    <aside class="chat-sidebar">
+      <h3>Сообщения</h3>
+      <div class="chat-list">
+        <div class="chat-item active">
+          <div class="chat-avatar" style="background:#a78bfa">М</div>
+          <div class="chat-info">
+            <h4>Мария</h4>
+            <p>Привет! Давай обсудим стек...</p>
+          </div>
+        </div>
+        <div class="chat-item">
+          <div class="chat-avatar" style="background:#60a5fa">Д</div>
+          <div class="chat-info">
+            <h4>Дмитрий</h4>
+            <p>Ок, жду ссылку на макет</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Окно переписки (справа) -->
+    <section class="chat-window">
+      <header class="chat-header">
+        <div class="chat-avatar" style="background:#a78bfa; width:40px; height:40px; font-size:18px;">М</div>
+        <div>
+          <h4>Мария (UI/UX Дизайнер)</h4>
+          <span style="color:var(--success); font-size:12px;">● Онлайн</span>
+        </div>
+      </header>
+
+      <div class="messages-area" id="messagesArea">
+        <div class="message received">
+          <p>Привет! Видела твой профиль, у тебя крутой опыт с React. 🔥</p>
+          <span class="time">10:42</span>
+        </div>
+        <div class="message sent">
+          <p>Привет, Мария! Да, спасибо. Ищу команду для хакатона в эти выходные.</p>
+          <span class="time">10:43</span>
+        </div>
+        <div class="message received">
+          <p>Супер! Я как раз ищу фронтендера. У нас уже есть бэкендер и идея. Давай созвонимся?</p>
+          <span class="time">10:45</span>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <input type="text" id="msgInput" placeholder="Написать сообщение...">
+        <button class="btn" id="sendBtn">➤</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/chat.js"></script>
+</body>
+</html>

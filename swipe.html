@@ -3,99 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🔍 Поиск команды — Коллаборация</title>
+  <title>Поиск команды — Коллаборация</title>
   <link rel="stylesheet" href="css/theme.css">
   <link rel="stylesheet" href="css/swipe.css">
 </head>
 <body>
-  <!-- Навигация (как на главной) -->
+  <!-- Навигация -->
   <nav class="navbar">
     <div class="container">
       <a href="index.html" class="nav-logo">✨ Коллаборация</a>
-      <div class="nav-links">
-        <a href="index.html#about">О платформе</a>
-        <a href="index.html#calendar">Мероприятия</a>
-        <a href="#" class="active">🔍 Поиск команды</a>
-        <a href="#" id="chatLink">💬 Чаты</a>
-      </div>
       <div class="nav-auth">
-        <span id="userName" style="display:none; font-weight:500; color:var(--primary)"></span>
-        <button id="logoutBtn" class="btn btn-outline" style="display:none; padding:8px 16px;">Выйти</button>
+        <button id="loginBtn" class="btn btn-outline" onclick="window.location.href='index.html'">На главную</button>
       </div>
     </div>
   </nav>
 
-  <!-- Экран блокировки (если не авторизован) -->
-  <div id="authGate" class="container" style="padding:80px 20px; text-align:center;">
-    <div class="card" style="max-width:500px; margin:0 auto; padding:40px;">
-      <h2 style="color:var(--primary); margin-bottom:16px;">🔒 Доступ после входа</h2>
-      <p style="color:var(--text-muted); margin-bottom:24px;">
-        Чтобы свайпать анкеты и находить команду для хакатона, войдите в аккаунт
-      </p>
-      <a href="index.html" class="btn">← Вернуться на главную</a>
+  <!-- Заголовок -->
+  <header class="swipe-header container">
+    <div>
+      <h1 style="color:var(--primary)">🔍 Поиск команды</h1>
+      <p style="color:var(--text-muted)">AI Hackathon 2026: найдите идеального напарника</p>
     </div>
-  </div>
+  </header>
 
-  <!-- Основной контент (показывается после входа) -->
-  <main id="swipeContent" class="container" style="display:none; padding:40px 20px;">
-    <div class="swipe-header">
-      <div>
-        <h1 style="color:var(--primary); margin-bottom:8px;">🔍 Найдите команду</h1>
-        <p style="color:var(--text-muted);">
-          Свайпайте анкеты участников мероприятия <strong id="currentEventName">AI Hackathon 2026</strong>
-        </p>
-      </div>
-      <select id="eventSelector" class="btn btn-outline" style="padding:10px 16px;">
-        <option value="1">AI Hackathon 2026</option>
-        <option value="2">React Moscow Meetup</option>
-        <option value="3">Python Data Workshop</option>
-      </select>
+  <!-- Область карточек -->
+  <main class="swipe-area">
+    <div id="card-stack">
+      <!-- Карточки генерируются JS -->
     </div>
 
-    <!-- Область карточек -->
-    <div class="swipe-area">
-      <div id="cardStack"></div>
-      
-      <!-- Индикаторы свайпа (появляются при перетаскивании) -->
-      <div id="swipeIndicator">
-        <span id="likeStamp" class="stamp like">LIKE</span>
-        <span id="nopeStamp" class="stamp nope">NOPE</span>
-      </div>
-
-      <!-- Кнопки управления -->
-      <div class="swipe-controls">
-        <button id="btnNope" class="control-btn nope" title="Пропустить (←)">✖</button>
-        <button id="btnSuper" class="control-btn super" title="Супер-лайк ⭐">⭐</button>
-        <button id="btnLike" class="control-btn like" title="Лайк (→)">❤</button>
-      </div>
-      
-      <p style="text-align:center; color:var(--text-muted); font-size:14px; margin-top:12px;">
-        💡 Совет: перетаскивайте карточку мышью или используйте кнопки
-      </p>
-    </div>
-
-    <!-- Статистика -->
-    <div class="swipe-stats">
-      <span>👁 Показано: <strong id="shownCount">0</strong></span>
-      <span>❤ Лайки: <strong id="likesCount">0</strong></span>
-      <span>✨ Мэтчи: <strong id="matchesCount">0</strong></span>
+    <!-- Кнопки управления -->
+    <div class="swipe-controls">
+      <button class="control-btn nope" onclick="swipeAction('left')">✖</button>
+      <button class="control-btn super">⭐</button>
+      <button class="control-btn like" onclick="swipeAction('right')">❤</button>
     </div>
   </main>
 
-  <!-- Модальное окно мэтча -->
-  <div id="matchModal" class="modal">
+  <!-- Модальное окно Мэтча -->
+  <div id="match-modal" class="modal-overlay">
     <div class="modal-content">
-      <div class="match-animation">🎉</div>
+      <div class="match-emoji">🎉</div>
       <h2>It's a Match!</h2>
-      <p id="matchText">Вы и <strong>Алексей</strong> лайкнули друг друга</p>
-      <div class="match-actions">
-        <button id="keepSwiping" class="btn btn-outline">Продолжить поиск</button>
-        <button id="openChat" class="btn">💬 Написать сообщение</button>
+      <p>Вы и <strong id="match-name">Алексей</strong> понравились друг другу</p>
+      <div class="modal-buttons">
+        <button class="btn btn-outline" onclick="closeMatchModal()">Продолжить поиск</button>
+        <button class="btn" onclick="openChat()">💬 Написать сообщение</button>
       </div>
     </div>
   </div>
 
-  <script type="module" src="js/firebase-init.js"></script>
-  <script type="module" src="js/swipe.js"></script>
+  <script src="js/swipe.js"></script>
 </body>
 </html>

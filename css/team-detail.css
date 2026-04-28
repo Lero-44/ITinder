@@ -1,0 +1,13 @@
+.team-detail-page { max-width: 800px; padding: 40px 20px; }
+.back-link { display: inline-block; margin-bottom: 20px; color: var(--text-muted); text-decoration: none; font-weight: 500; }
+.back-link:hover { color: var(--primary); }
+.team-header-card { background: white; padding: 30px; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 24px; border-left: 5px solid var(--purple); }
+.team-title { font-size: 2rem; color: var(--primary); margin-bottom: 8px; }
+.team-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; color: var(--text-muted); }
+.team-desc-full { font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; }
+.team-status { background: #dbeafe; color: var(--primary); padding: 8px 16px; border-radius: 12px; display: inline-block; font-weight: 600; }
+.section-title { font-size: 1.5rem; color: var(--text); margin: 30px 0 16px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+.history-list { list-style: none; padding: 0; }
+.history-list li { background: #f8fafc; padding: 16px; border-radius: 12px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+.history-list li span { color: var(--purple); font-weight: 600; }
+.join-btn { width: 100%; margin-top: 24px; padding: 16px; font-size: 1.1rem; }

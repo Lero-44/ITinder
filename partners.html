@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Партнеры — Коллаборация</title>
+  <link rel="stylesheet" href="css/theme.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">✨ Коллаборация</a>
+      <div class="nav-links">
+        <a href="index.html#about">О платформе</a>
+        <a href="index.html#calendar">Мероприятия</a>
+        <a href="teams.html">Найти команду</a>
+        <a href="partners.html" class="active">Партнеры</a>
+        <a href="chat.html">Чаты</a>
+      </div>
+      <div class="nav-auth"><button id="loginBtn" class="btn">Войти</button></div>
+    </div>
+  </nav>
+
+  <main class="container partners-page">
+    <h1 class="section-title">🤝 Наши партнеры</h1>
+    <p class="section-subtitle">Мы сотрудничаем с ведущими образовательными учреждениями и фондами, чтобы предоставлять лучшие возможности для развития студентов</p>
+    
+    <div class="partners-grid">
+      <!-- Партнер 1: РГЭУ (РИНХ) -->
+      <div class="partner-card">
+        <div class="partner-logo">🎓</div>
+        <h3>РГЭУ (РИНХ)</h3>
+        <p>Ростовский государственный экономический университет (РИНХ) — один из ведущих экономических вузов Юга России. Поддерживает студенческие инициативы, хакатоны и стартап-проекты.</p>
+        <a href="https://rinec.ru" target="_blank" class="partner-link">rinec.ru →</a>
+      </div>
+      
+      <!-- Партнер 2: Фонд студенческих грантов -->
+      <div class="partner-card">
+        <div class="partner-logo">💰</div>
+        <h3>Фонд студенческих грантов</h3>
+        <p>Некоммерческая организация, предоставляющая гранты на реализацию студенческих проектов в сфере технологий, науки и социального предпринимательства.</p>
+        <a href="#" class="partner-link">studentgrants.ru →</a>
+      </div>
+    </div>
+    
+    <div style="text-align:center; margin-top:40px;">
+      <p style="color:var(--text-muted); margin-bottom:16px;">Хотите стать партнером платформы?</p>
+      <button class="btn" onclick="alert('Спасибо за интерес! Напишите нам на partners@collab.ru')">📩 Связаться с нами</button>
+    </div>
+  </main>
+
+  <script>
+    let isAuthenticated = false;
+    function toggleAuth() { isAuthenticated = !isAuthenticated; document.getElementById('loginBtn').textContent = isAuthenticated ? '👤 Выйти' : 'Войти'; }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('loginBtn').addEventListener('click', toggleAuth);
+    });
+  </script>
+</body>
+</html>

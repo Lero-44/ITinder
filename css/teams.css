@@ -1,0 +1,50 @@
+.teams-page { padding: 20px 20px 60px; }
+.tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; }
+.tab-btn { background: transparent; border: none; padding: 10px 24px; font-size: 1rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-radius: 8px; transition: 0.2s; }
+.tab-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(30,64,175,0.3); }
+.tab-desc { text-align: center; color: var(--text-muted); margin-bottom: 30px; }
+.tab-content { display: none; animation: fadeIn 0.3s; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.swipe-wrapper { display: flex; flex-direction: column; align-items: center; }
+#card-stack { width: 320px; height: 480px; position: relative; margin-bottom: 24px; }
+
+.tinder-card { 
+  position: absolute; width: 100%; height: 100%; 
+  background: var(--surface); border-radius: 20px; 
+  box-shadow: var(--shadow); padding: 20px; 
+  display: flex; flex-direction: column; align-items: center; 
+  text-align: center; cursor: grab; border: 1px solid #eee; 
+  transition: transform 0.1s; /* Быстрая реакция на драг */
+}
+.tinder-card:active { cursor: grabbing; }
+
+.card-avatar { width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-hero); display: flex; align-items: center; justify-content: center; font-size: 32px; color: white; margin-bottom: 12px; }
+.card-name { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+
+/* Стиль для города */
+.card-city { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; gap: 4px; font-weight: 500; }
+
+.card-role { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px; }
+.card-skills { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 16px; }
+.skill-tag { background: #eff6ff; color: var(--primary); padding: 5px 10px; border-radius: 10px; font-size: 12px; }
+.card-bio { background: #f8fafc; padding: 10px; border-radius: 10px; font-size: 0.85rem; width: 100%; margin-top: auto; }
+
+.swipe-controls { display: flex; gap: 16px; }
+.control-btn { width: 56px; height: 56px; border-radius: 50%; border: none; font-size: 20px; cursor: pointer; box-shadow: var(--shadow); transition: 0.2s; }
+.control-btn:hover { transform: scale(1.1); }
+.control-btn.nope { background: white; color: #ef4444; border: 2px solid #fee2e2; }
+.control-btn.super { background: white; color: #3b82f6; border: 2px solid #dbeafe; }
+.control-btn.like { background: var(--primary); color: white; }
+
+.teams-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.team-card { background: var(--surface); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); transition: var(--transition); cursor: pointer; border-top: 4px solid var(--accent); }
+.team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: var(--purple); }
+.team-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px; }
+.team-name { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+.team-event { font-size: 0.85rem; color: var(--text-muted); background: #f1f5f9; padding: 4px 8px; border-radius: 8px; }
+.team-roles { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.role-tag { background: #ede9fe; color: var(--purple); padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 500; }
+.team-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px; }
+.team-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 12px; font-size: 0.85rem; color: var(--text-muted); }

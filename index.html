@@ -10,6 +10,13 @@
   <nav class="navbar">
     <div class="container">
       <a href="#" class="nav-logo">✨ Коллаборация</a>
+      <div class="nav-links">
+        <a href="#about">О платформе</a>
+        <a href="#calendar">Мероприятия</a>
+        <a href="teams.html">Найти команду</a>
+        <a href="partners.html">Партнеры</a>
+        <a href="chat.html">Чаты</a>
+      </div>
       <div class="nav-auth">
         <button id="loginBtn" class="btn">Войти</button>
       </div>
@@ -17,7 +24,7 @@
   </nav>
 
   <section class="hero">
-    <div class="hero-bg"></div> <!-- Новая картинка -->
+    <div class="hero-bg"></div>
     <div class="hero-content">
       <h1 class="hero-title">Коллаборация</h1>
       <p class="hero-subtitle">Находите единомышленников, собирайте команды для хакатонов и создавайте проекты, которые меняют мир</p>
@@ -45,24 +52,106 @@
     <div class="container">
       <div class="calendar-header">
         <h2 class="calendar-title">🗓️ Ближайшие мероприятия</h2>
-        <div class="filters">
-          <select id="topicFilter"><option value="all">Все темы</option><option value="frontend">Frontend</option><option value="backend">Backend</option><option value="ai">AI/ML</option><option value="design">Дизайн</option></select>
-          <select id="formatFilter"><option value="all">Любой формат</option><option value="online">Онлайн</option><option value="offline">Офлайн</option><option value="hybrid">Гибрид</option></select>
-          <input type="date" id="dateFilter">
+        <div class="calendar-controls">
+          <div class="view-toggle">
+            <button id="viewList" class="toggle-btn active">Список</button>
+            <button id="viewCalendar" class="toggle-btn">Календарь</button>
+          </div>
+          <div class="filters" id="filtersContainer">
+            <select id="topicFilter"><option value="all">Все темы</option><option value="frontend">Frontend</option><option value="backend">Backend</option><option value="ai">AI/ML</option><option value="design">Дизайн</option></select>
+            <select id="formatFilter"><option value="all">Любой формат</option><option value="online">Онлайн</option><option value="offline">Офлайн</option><option value="hybrid">Гибрид</option></select>
+            <input type="date" id="dateFilter">
+          </div>
         </div>
       </div>
       
-      <!-- Карточки генерируются JS -->
+      <!-- Контейнер для сетки календаря -->
+      <div id="calendarGrid" class="calendar-grid" style="display:none;">
+        <!-- Кнопки навигации по месяцам -->
+        <div class="calendar-nav" style="grid-column: 1/-1; display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <button id="prevMonth" class="btn btn-outline" style="padding:6px 12px; font-size:14px;">← Назад</button>
+          <span id="currentMonthLabel" style="font-weight:600; color:var(--primary)"></span>
+          <button id="nextMonth" class="btn btn-outline" style="padding:6px 12px; font-size:14px;">Вперед →</button>
+        </div>
+      </div>
+      
+      <!-- Контейнер для списка мероприятий -->
       <div id="eventsList" class="events-list"></div>
+      <div id="calendarMessage" style="text-align:center; padding:20px; color:var(--text-muted); display:none;"></div>
     </div>
   </section>
 
-  <!-- НОВЫЙ ПРОМО-БЛОК -->
+  <!-- Архив прошедших мероприятий (в стиле hackathons.pro) -->
+  <section class="archive-section">
+    <div class="container">
+      <h2 class="section-title">🗄️ Архив мероприятий</h2>
+      <p class="section-subtitle">Посмотрите, какие события уже прошли — возможно, вы участвовали в одном из них</p>
+      
+      <div class="archive-grid">
+        <div class="archive-card">
+          <div class="archive-date">
+            <span class="day">15</span>
+            <span class="month">АПР</span>
+            <span class="year">2026</span>
+          </div>
+          <div class="archive-info">
+            <h3>Spring Code Battle 2026</h3>
+            <p class="archive-desc">Хакатон по разработке веб-приложений. 48 часов, 120 участников, 15 проектов.</p>
+            <div class="archive-badges">
+              <span class="badge offline">📍 Офлайн</span>
+              <span class="badge" style="background:#f1f5f9">#frontend</span>
+            </div>
+          </div>
+          <div class="archive-status">
+            <span style="color:var(--text-muted); font-size:13px;">✅ Завершено</span>
+          </div>
+        </div>
+
+        <div class="archive-card">
+          <div class="archive-date">
+            <span class="day">28</span>
+            <span class="month">МАР</span>
+            <span class="year">2026</span>
+          </div>
+          <div class="archive-info">
+            <h3>AI Startup Weekend</h3>
+            <p class="archive-desc">Интенсив по запуску AI-стартапов. Менторство от экспертов, питчинг инвесторам.</p>
+            <div class="archive-badges">
+              <span class="badge hybrid">🔄 Гибрид</span>
+              <span class="badge prize">🏆 Гранты</span>
+            </div>
+          </div>
+          <div class="archive-status">
+            <span style="color:var(--text-muted); font-size:13px;">✅ Завершено</span>
+          </div>
+        </div>
+
+        <div class="archive-card">
+          <div class="archive-date">
+            <span class="day">10</span>
+            <span class="month">МАР</span>
+            <span class="year">2026</span>
+          </div>
+          <div class="archive-info">
+            <h3>Data Science Meetup #15</h3>
+            <p class="archive-desc">Встреча специалистов по данным. Доклады о ML-моделях, нетворкинг, кейсы.</p>
+            <div class="archive-badges">
+              <span class="badge online">💻 Онлайн</span>
+              <span class="badge" style="background:#f1f5f9">#ai</span>
+            </div>
+          </div>
+          <div class="archive-status">
+            <span style="color:var(--text-muted); font-size:13px;">✅ Завершено</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="promo-section">
     <div class="container">
       <h2 class="section-title">🔥 Найдите команду за 30 секунд</h2>
       <p class="section-subtitle">Просто свайпайте анкеты участников. Вправо — если хотите работать вместе, влево — если нет.</p>
-      
       <div class="promo-card-container">
         <div class="promo-demo-card">
           <div class="promo-demo-avatar"></div>
@@ -71,7 +160,6 @@
           <div class="promo-demo-skills">
             <span class="promo-demo-tag">React</span>
             <span class="promo-demo-tag">Node.js</span>
-            <span class="promo-demo-tag">Git</span>
           </div>
           <div style="margin-top:16px; display:flex; justify-content:space-between; font-size:24px;">
             <span style="opacity:0.3;">👈</span>
@@ -79,25 +167,18 @@
           </div>
         </div>
       </div>
-
       <button id="promoLoginBtn" class="btn">🚀 Зарегистрироваться и начать свайпы</button>
     </div>
   </section>
 
-  <!-- Скрипты -->
   <script src="js/calendar.js"></script>
   <script>
-    // --- ГЛОБАЛЬНАЯ АВТОРИЗАЦИЯ ---
     let isAuthenticated = false;
-
     function toggleAuth() {
       isAuthenticated = !isAuthenticated;
       updateInterface();
-      if (isAuthenticated) {
-        alert('✅ Вы успешно вошли!');
-      }
+      if (isAuthenticated) alert('✅ Вы успешно вошли!');
     }
-
     function updateInterface() {
       const loginBtns = document.querySelectorAll('#loginBtn, #heroLoginBtn, #promoLoginBtn');
       loginBtns.forEach(btn => {
@@ -105,7 +186,6 @@
         btn.onclick = toggleAuth;
       });
     }
-
     document.addEventListener('DOMContentLoaded', updateInterface);
   </script>
 </body>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поиск команды — Коллаборация</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/teams.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">✨ Коллаборация</a>
+      <div class="nav-links">
+        <a href="index.html">Мероприятия</a>
+        <a href="teams.html" class="active">Найти команду</a>
+        <a href="chat.html">Чаты</a>
+      </div>
+      <div class="nav-auth"><button id="loginBtn" class="btn">Войти</button></div>
+    </div>
+  </nav>
+
+  <main class="container teams-page">
+    <h1 style="text-align:center; margin: 40px 0 20px; color:var(--primary)">🔍 Найдите идеальных напарников</h1>
+    
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="individuals">Единомышленники</button>
+      <button class="tab-btn" data-tab="teams">Команды</button>
+    </div>
+
+    <div id="tab-individuals" class="tab-content active">
+      <p class="tab-desc">Свайпайте анкеты разработчиков. Вправо — лайк, влево — пропуск.</p>
+      <div class="swipe-wrapper">
+        <div id="card-stack"></div>
+        <div class="swipe-controls">
+          <button class="control-btn nope" onclick="swipeAction('left')">✖</button>
+          <button class="control-btn super">⭐</button>
+          <button class="control-btn like" onclick="swipeAction('right')">❤</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-teams" class="tab-content">
+      <p class="tab-desc">Готовые команды ищут усиление. Выберите подходящую и присоединяйтесь.</p>
+      <div id="teamsGrid" class="teams-grid"></div>
+    </div>
+  </main>
+
+  <script src="js/teams.js"></script>
+  <script>
+    let isAuthenticated = false;
+    function toggleAuth() { isAuthenticated = !isAuthenticated; document.getElementById('loginBtn').textContent = isAuthenticated ? '👤 Выйти' : 'Войти'; }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('loginBtn').addEventListener('click', toggleAuth);
+    });
+  </script>
+</body>
+</html>
