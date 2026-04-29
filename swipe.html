@@ -8,45 +8,40 @@
   <link rel="stylesheet" href="css/swipe.css">
 </head>
 <body>
-  <!-- Навигация -->
   <nav class="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">✨ Коллаборация</a>
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Коллаборация">
+      </a>
       <div class="nav-auth">
         <button id="loginBtn" class="btn btn-outline" onclick="window.location.href='index.html'">На главную</button>
       </div>
     </div>
   </nav>
 
-  <!-- Заголовок -->
-  <header class="swipe-header container">
+  <header class="swipe-header container" style="text-align:center; margin-top:40px; margin-bottom:20px;">
     <div>
       <h1 style="color:var(--primary)">🔍 Поиск команды</h1>
       <p style="color:var(--text-muted)">AI Hackathon 2026: найдите идеального напарника</p>
     </div>
   </header>
 
-  <!-- Область карточек -->
-  <main class="swipe-area">
-    <div id="card-stack">
-      <!-- Карточки генерируются JS -->
-    </div>
+  <main class="swipe-area" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:70vh; position:relative;">
+    <div id="card-stack" style="width:340px; height:480px; position:relative; perspective:1000px;"></div>
 
-    <!-- Кнопки управления -->
-    <div class="swipe-controls">
-      <button class="control-btn nope" onclick="swipeAction('left')">✖</button>
-      <button class="control-btn super">⭐</button>
-      <button class="control-btn like" onclick="swipeAction('right')">❤</button>
+    <div class="swipe-controls" style="display:flex; gap:20px; margin-top:30px;">
+      <button class="control-btn nope" onclick="swipeAction('left')" style="width:60px; height:60px; border-radius:50%; border:none; font-size:20px; cursor:pointer; box-shadow:var(--shadow); transition:0.2s; background:white; color:#ef4444; border:2px solid #fee2e2;">✖</button>
+      <button class="control-btn super" style="width:60px; height:60px; border-radius:50%; border:none; font-size:20px; cursor:pointer; box-shadow:var(--shadow); transition:0.2s; background:white; color:#3b82f6; border:2px solid #dbeafe;">⭐</button>
+      <button class="control-btn like" onclick="swipeAction('right')" style="width:60px; height:60px; border-radius:50%; border:none; font-size:20px; cursor:pointer; box-shadow:var(--shadow); transition:0.2s; background:var(--accent); color:white;">❤</button>
     </div>
   </main>
 
-  <!-- Модальное окно Мэтча -->
-  <div id="match-modal" class="modal-overlay">
-    <div class="modal-content">
-      <div class="match-emoji">🎉</div>
+  <div id="match-modal" class="modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center; backdrop-filter:blur(4px);">
+    <div class="modal-content" style="background:white; padding:32px; border-radius:24px; text-align:center; max-width:320px; width:90%; animation:popIn 0.4s;">
+      <div class="match-emoji" style="font-size:60px; margin-bottom:16px;">🎉</div>
       <h2>It's a Match!</h2>
       <p>Вы и <strong id="match-name">Алексей</strong> понравились друг другу</p>
-      <div class="modal-buttons">
+      <div class="modal-buttons" style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
         <button class="btn btn-outline" onclick="closeMatchModal()">Продолжить поиск</button>
         <button class="btn" onclick="openChat()">💬 Написать сообщение</button>
       </div>

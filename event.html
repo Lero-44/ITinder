@@ -9,7 +9,9 @@
 <body>
   <nav class="navbar">
     <div class="container">
-      <a href="index.html" class="nav-logo">✨ Коллаборация</a>
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Коллаборация">
+      </a>
       <div class="nav-auth">
         <button id="loginBtn" class="btn">Войти</button>
       </div>
@@ -17,47 +19,39 @@
   </nav>
 
   <main class="container event-detail-page" style="padding-top: 40px;">
-    <a href="index.html" class="back-link">← Назад к календарю</a>
+    <a href="index.html" class="back-link" style="color:var(--text-muted); text-decoration:none; display:inline-block; margin-bottom:20px;">← Назад к календарю</a>
     
-    <div id="event-content" class="event-full-card">
+    <div id="event-content" class="event-full-card" style="background:white; padding:30px; border-radius:20px; box-shadow:var(--shadow); margin-bottom:30px;">
       <!-- Контент загрузится через JS -->
     </div>
 
-    <!-- Блок чата (заблокирован до входа) -->
-    <div class="chat-gate-box">
+    <div class="chat-gate-box" style="background:white; padding:30px; border-radius:20px; box-shadow:var(--shadow); text-align:center;">
       <h3>💬 Командный чат</h3>
       <p>Обсудите детали и распределите роли с другими участниками</p>
-      <div id="chatPreview" class="chat-preview-blur">
+      <div id="chatPreview" class="chat-preview-blur" style="background:#f1f5f9; padding:40px; border-radius:12px; margin-top:16px; filter:blur(2px);">
         <p>🔒 Чат доступен после входа</p>
       </div>
-      <button id="loginToChat" class="btn" style="margin-top: 16px;">Войти, чтобы написать</button>
+      <button id="loginToChat" class="btn" style="margin-top:16px;">Войти, чтобы написать</button>
     </div>
   </main>
 
   <script src="js/event.js"></script>
   <script>
-    // --- ГЛОБАЛЬНАЯ АВТОРИЗАЦИЯ (копия логики для этой страницы) ---
     let isAuthenticated = false;
-
     function toggleAuth() {
       isAuthenticated = !isAuthenticated;
       updateInterface();
       if (isAuthenticated) {
-        const btn = document.getElementById('loginBtn');
-        btn.textContent = '👤 Выйти';
-        alert('✅ Вы успешно вошли!');
+        document.getElementById('loginBtn').textContent = '👤 Выйти';
         checkChatAccess();
       } else {
-        const btn = document.getElementById('loginBtn');
-        btn.textContent = 'Войти';
+        document.getElementById('loginBtn').textContent = 'Войти';
         checkChatAccess();
       }
     }
-
     function checkChatAccess() {
       const chatBtn = document.getElementById('loginToChat');
       const chatBlur = document.getElementById('chatPreview');
-      
       if (isAuthenticated) {
         if(chatBtn) chatBtn.style.display = 'none';
         if(chatBlur) {
@@ -66,13 +60,11 @@
         }
       }
     }
-
     function updateInterface() {
       const btn = document.getElementById('loginBtn');
       btn.textContent = isAuthenticated ? '👤 Выйти' : 'Войти';
       btn.onclick = toggleAuth;
     }
-
     document.addEventListener('DOMContentLoaded', updateInterface);
   </script>
 </body>

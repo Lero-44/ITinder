@@ -10,27 +10,31 @@
 <body>
   <nav class="navbar">
     <div class="container">
-      <a href="swipe.html" class="nav-logo">← Назад к поиску</a>
-      <div class="nav-auth">
-        <span style="font-weight:600; color:var(--primary)">Вы: Алексей</span>
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Коллаборация">
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Мероприятия</a>
+        <a href="teams.html">Найти команду</a>
+        <a href="chat.html" class="active">Чаты</a>
       </div>
+      <div class="nav-auth"><button id="loginBtn" class="btn">Войти</button></div>
     </div>
   </nav>
 
   <main class="chat-container container">
-    <!-- Список диалогов (слева) -->
     <aside class="chat-sidebar">
       <h3>Сообщения</h3>
       <div class="chat-list">
         <div class="chat-item active">
-          <div class="chat-avatar" style="background:#a78bfa">М</div>
+          <div class="chat-avatar" style="background:var(--accent)">М</div>
           <div class="chat-info">
             <h4>Мария</h4>
             <p>Привет! Давай обсудим стек...</p>
           </div>
         </div>
         <div class="chat-item">
-          <div class="chat-avatar" style="background:#60a5fa">Д</div>
+          <div class="chat-avatar" style="background:var(--primary)">Д</div>
           <div class="chat-info">
             <h4>Дмитрий</h4>
             <p>Ок, жду ссылку на макет</p>
@@ -39,10 +43,9 @@
       </div>
     </aside>
 
-    <!-- Окно переписки (справа) -->
     <section class="chat-window">
       <header class="chat-header">
-        <div class="chat-avatar" style="background:#a78bfa; width:40px; height:40px; font-size:18px;">М</div>
+        <div class="chat-avatar" style="background:var(--accent); width:40px; height:40px; font-size:18px;">М</div>
         <div>
           <h4>Мария (UI/UX Дизайнер)</h4>
           <span style="color:var(--success); font-size:12px;">● Онлайн</span>
