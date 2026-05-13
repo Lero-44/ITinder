@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мой профиль — Коллаборация</title>
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Коллаборация">
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Мероприятия</a>
+        <a href="teams.html">Найти команду</a>
+        <a href="profile.html" class="active">Мой профиль</a>
+        <a href="chat.html">Чаты</a>
+      </div>
+      <div class="nav-auth"><button id="loginBtn" class="btn">Войти</button></div>
+    </div>
+  </nav>
+
+  <main class="container profile-page">
+    <h1 class="page-title">👤 Мой профиль</h1>
+    <p class="page-subtitle">Заполните информацию о себе, чтобы другие участники могли найти вас</p>
+
+    <div class="profile-layout">
+      <!-- Левая колонка: форма -->
+      <div class="profile-form-card">
+        <h2>Заполните анкету</h2>
+        <form id="profileForm">
+          <div class="form-group">
+            <label for="fullName">ФИО *</label>
+            <input type="text" id="fullName" placeholder="Иванов Иван Иванович" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="birthDate">Дата рождения</label>
+              <input type="date" id="birthDate">
+            </div>
+            <div class="form-group">
+              <label for="city">Город *</label>
+              <input type="text" id="city" placeholder="Москва" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="skills">Компетенции (через запятую)</label>
+            <input type="text" id="skills" placeholder="React, Python, Figma, Git">
+          </div>
+
+          <div class="form-group">
+            <label for="goal">Цель на платформе *</label>
+            <select id="goal" required>
+              <option value="">Выберите цель...</option>
+              <option value="Ищу команду для хакатона">Ищу команду для хакатона</option>
+              <option value="Ищу разработчика для стартапа">Ищу разработчика для стартапа</option>
+              <option value="Ищу ментора/наставника">Ищу ментора/наставника</option>
+              <option value="Хочу найти единомышленников">Хочу найти единомышленников</option>
+              <option value="Ищу работу/стажировку">Ищу работу/стажировку</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="bio">Дополнительная информация</label>
+            <textarea id="bio" rows="4" placeholder="Расскажите о своем опыте, проектах или чем можете быть полезны команде..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary"> Сохранить анкету</button>
+            <button type="button" id="resetBtn" class="btn btn-outline">🔄 Очистить</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Правая колонка: превью -->
+      <div class="profile-preview-card">
+        <h2>Предпросмотр анкеты</h2>
+        <div id="previewContent" class="preview-empty">
+          <div class="empty-state">
+            <span style="font-size:48px;">📝</span>
+            <p>Заполните форму слева, чтобы увидеть, как будет выглядеть ваша анкета</p>
+          </div>
+        </div>
+        <div id="profileCard" class="profile-card" style="display:none;">
+          <div class="card-header">
+            <div class="user-avatar" id="previewAvatar">ИИ</div>
+            <div class="user-info">
+              <h3 id="previewName">Имя Фамилия</h3>
+              <p class="user-location" id="previewLocation">📍 Город</p>
+              <p class="user-age" id="previewAge"></p>
+            </div>
+          </div>
+          
+          <div class="card-goal">
+            <span class="goal-label">🎯 Цель</span>
+            <p id="previewGoal">Цель на платформе</p>
+          </div>
+
+          <div class="card-skills">
+            <span class="skills-label">💼 Компетенции</span>
+            <div class="skills-list" id="previewSkills"></div>
+          </div>
+
+          <div class="card-bio" id="previewBio" style="display:none;">
+            <span class="bio-label"> О себе</span>
+            <p id="previewBioText"></p>
+          </div>
+
+          <div class="card-footer">
+            <span class="badge online">✅ Активен</span>
+            <span style="font-size:12px; color:var(--text-muted)">Обновлено только что</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/profile.js"></script>
+  <script>
+    let isAuthenticated = false;
+    function toggleAuth() { isAuthenticated = !isAuthenticated; document.getElementById('loginBtn').textContent = isAuthenticated ? '👤 Выйти' : 'Войти'; }
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('loginBtn').addEventListener('click', toggleAuth);
+    });
+  </script>
+</body>
+</html>
