@@ -16,4 +16,4 @@
 - Vanilla JavaScript
 - Firebase (авторизация через Google, Firestore для хранения данных)
 
-Сайт развёрнут на GitHub Pages:
+Сайт развёрнут на GitHub Pages: https://lero-44.github.io/ITinder/
